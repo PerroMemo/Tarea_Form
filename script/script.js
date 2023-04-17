@@ -131,3 +131,42 @@ $formulario.addEventListener("submit", (e) => {
         document.getElementById("formulario__mensaje").classList.add("formulario__mensaje-activo");
     }
 });
+
+function crearCarta(){
+
+    var fecha_hoy = new Date()
+    var dd = String(fecha_hoy.getDate()).padStart(2, '0')
+    var mm = String(fecha_hoy.getMonth() + 1).padStart(2, '0')//January is 0!
+    var yyyy = fecha_hoy.getFullYear()
+    fecha_hoy = mm + '/' + dd + '/' + yyyy
+
+    const carta = document.getElementById('carta')
+    const rut = document.getElementById('rut').value
+    const nombre = document.getElementById('nombre').value
+    const apellido = document.getElementById('apellido-paterno').value
+    const apellidom = document.getElementById('apellido-materno').value
+    const profesion = document.getElementById('profesion').value
+    const edad = document.getElementById('edad').value
+    const genero = document.getElementById('genero').value
+    const mail = document.getElementById('email').value
+    const motiv = document.getElementById('motivacion').value
+    
+    
+    message =  fecha_hoy 
+     + 'Estimado responsable de recursos humanos ' +  
+    '\nyo ' + nombre + ' ' + apellido +' '+ apellidom + ' ,rut : '+ rut +' , pretendo postular al trabajo, ' +
+    'soy un/a ' + genero.toLowerCase() + ' de ' + edad + ' años, fui ' + profesion + ' quiero trabajar porque ' + motiv + 
+    ' , mi mail de contacto es: ' + mail 
+
+    if (genero == 'No binario'){
+        message = fecha_hoy 
+        + 'Estimado responsable de recursos humanos, ' +  
+       'yo ' + nombre + ' ' + apellido +' '+ apellidom + ', rut : '+ rut +' , pretendo postular al trabajo, ' 
+       + ' tengo ' + edad +' años, soy una persona ' + genero.toLowerCase() + ' fui ' + profesion + ' quiero trabajar porque ' + motiv + 
+       ' , mi mail de contacto es: ' + mail 
+    }
+    
+    //document.write('Estimado responsable de recursos humanos' +  rut )
+    carta.innerText = message 
+};
+  
