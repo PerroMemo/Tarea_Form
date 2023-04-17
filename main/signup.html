@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8">
   <title>Formulario de postulación</title>
-  <link rel="stylesheet" type="text/css" href="./style.css">
+  <link rel="stylesheet" type="text/css" href="../estilo/style.css">
+  <script src="../script/script.js"></script>
 </head>
 <body>
   
-  <form id="formulario" onsubmit="return validarFormulario()" action="enviar.php" method="post">
+  <form id="formulario" onsubmit="return validarFormulario()" method="GET">
     <h1>Formulario de postulación para el trabajo de apoyo ambiental en Chiloé</h1>
     <label for="rut">RUT:</label>
     <input type="text" id="rut" name="rut" minlength="9" maxlength="10" required>
@@ -30,9 +31,9 @@
     <label for="genero">Género:</label>
     <select id="genero" name="genero" required>
       <option value="">Seleccione</option>
-      <option value="Femenino">Femenino</option>
-      <option value="Masculino">Masculino</option>
-      <option value="No binario">No binario</option>
+      <option value="Mujer">Mujer</option>
+      <option value="Hombre">Hombre</option>
+      <option value="No binaria">No binaria</option>
     </select>
 
     <label for="email">Email:</label>
@@ -45,16 +46,16 @@
     <input type="text" id="profesion" name="profesion" required>
 
     <label for="motivacion">Motivación para postular al trabajo:</label>
-    <textarea id="motivacion" name="motivacion" rows="5" required></textarea>
+    <input type="text" id="motivacion" name="motivacion" rows="5" required>
 
     <input type="submit" value="Enviar">
     <input type="button" value="Crear Carta" onclick="crearCarta()">
     <br>
     <br>
     <label for="carta">Carta de presentación e intención:</label>
-    <textarea id="carta" name="carta" rows="10"></textarea>
+      <textarea name="carta" id="carta" cols="30" rows="10"></textarea>
   </form>
-  <script src="validacion.js"></script>
+  
 </body>
 </html>
 
