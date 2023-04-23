@@ -4,64 +4,71 @@
   <meta charset="utf-8">
   <title>Formulario de postulación</title>
   <link rel="stylesheet" type="text/css" href="../estilo/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script> 
   <script src="../script/script.js"></script>
+
 </head>
 <body>
   
   <form id="formulario" onsubmit="return validarFormulario()" method="GET">
     <h1>Formulario de postulación para el trabajo de apoyo ambiental en Chiloé</h1>
     <label for="rut">RUT:</label>
-    <input type="text" id="rut" name="rut" minlength="9" maxlength="10" required>
-
+    <input type="text" id="rut" name="rut">
+    <br>
+    <br>
     <label for="apellido-paterno">Apellido paterno:</label>
-    <input type="text" id="apellido-paterno" name="apellido-paterno" minlength="3" maxlength="20" required>
-
+    <input type="text" id="apellido-paterno" name="apellidop">
+    <br>
+    <br>
     <label for="apellido-materno">Apellido materno:</label>
-    <input type="text" id="apellido-materno" name="apellido-materno" minlength="3" maxlength="20" required>
+    <input type="text" id="apellido-materno" name="apellidom">
+    <br>
+    <br>
 
     <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" minlength="3" maxlength="20" required>
-
+    <input type="text" id="nombre" name="nombre">
+    <br>
+    <br>
     <label for="fecha-nacimiento">Fecha de nacimiento:</label>
-    <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" required>
-
+    <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" >
+    <br>
+    <br>
     <label for="edad">Edad:</label>
-    <input type="number" id="edad" name="edad" min="18" max="35" required>
-
+    <input type="number" id="edad" name="edad" min="18" max="35" >
+    <br>
+    <br>
     <label for="genero">Género:</label>
-    <select id="genero" name="genero" required>
+    <select id="genero" name="genero" >
       <option value="">Seleccione</option>
-      <option value="Femenino">Mujer</option>
-      <option value="Masculino">Hombre</option>
+      <option value="Mujer">Mujer</option>
+      <option value="Hombre">Hombre</option>
       <option value="No binaria">No binaria</option>
     </select>
-
+    <br>
+    <br>
     <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-
+    <input type="email" id="email" name="email" >
+    <br>
+    <br>
     <label for="celular">Celular:</label>
-    <input type="text" id="celular" name="celular" minlength="9" maxlength="12" required>
-
+    <input type="text" id="celular" name="celular" minlength="9" maxlength="12" >
+    <br>
+    <br>
     <label for="profesion">Profesión:</label>
-    <input type="text" id="profesion" name="profesion" required>
-
+    <input type="text" id="profesion" name="profesion" >
+    <br>
+    <br>
     <label for="motivacion">Motivación para postular al trabajo:</label>
-    <textarea id="motivacion" name="motivacion" rows="5" required></textarea>
-
+    <input type="text" id="motivacion" name="motivacion" rows="5" >
+    <br>
+    <br>
     <input type="submit" value="Enviar">
-    <input type="button" value="Crear Carta" onclick="crearCarta()"
-    >
+    <input type="button" value="Crear Carta" onclick="crearCarta()">
     <br>
     <br>
     <label for="carta">Carta de presentación e intención:</label>
-  
-      <textarea name="carta" id="carta" cols="30" rows="10">
-    
-      </textarea>
-
-    
-
-    </div>
+      <div name="carta" id="carta" cols="30" rows="10"></div>
   </form>
   
 </body>

@@ -1,110 +1,28 @@
-// --------- GUARDAMOS NUESTRO FORMULARIO E INPUTS EN CONSTANTES ---------------
-const $formulario = document.getElementById("formulario");
-const $inputs = document.querySelectorAll("#formulario input")
-
 
 // --------- OBJETO CON NUESTRAS EXPRESIONES REGULARES ---------------
 const expresiones = {
-    usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // AQUI LE ESTAMOS DICIENDO QUE EN EL CAMPO USUARIO ACEPTE LETRAS MINUSCULAS Y MAYUSCULAS DE LA A HASTA LA Z, NÚMEROS DEL 0 HASTA EL 9, GUIONES BAJOS, GUIONES MEDIO Y UNA CANTIDAD MINIMA DE 4 CARACTERES Y MAXIMA DE 16 CARACTERES
-    nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // AQUI ACEPTARA LETRAS CON O SIN ACENTO Y ESPACIOS
-    password: /^.{4,12}$/, // SÓLO ACEPTARA UN MINIMO DE 4 DIGITOS Y UN MÁXIMO DE 12 DIGITOS
-    correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // ACEPTA DE TODO MENOS CARACTERES ESPECIALES
-    telefono: /^\d{7,14}$/ // ACEPTARA MINIMO 7 Y MAXIMO 14 NÚMEROS
-}
+    usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, 
+    nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, 
+    password: /^.{4,12}$/, 
+    correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, 
+    telefono: /^\d{7,14}$/ 
+};
 
-
-// -------------- OBJETO CON NUESTROS CAMPOS ----------------------
-const campos = {
-    usuario: false,
-    nombre: false,
-    password: false,
-    correo: false,
-    telefono: false
-}
-
-
-// --------- SWITCH PARA SELECCIONAR EL INPUT DONDE ÉSTE HACIENDO FOCO EL USUARIO  ---------------
-const validarFormulario = (e) => {
-    switch(e.target.name) {
-        case "usuario":
-            validarCampo(expresiones.usuario, e.target, "usuario");
-        break;
-        case "nombre":
-            validarCampo(expresiones.nombre, e.target, "nombre");
-        break;
-        case "password":
-            validarCampo(expresiones.password, e.target, "password");
-            validarPassword2();
-        break;
-        case "password2":
-            validarPassword2();
-        break;
-        case "correo":
-            validarCampo(expresiones.correo, e.target, "correo");
-        break;
-        case "telefono":
-            validarCampo(expresiones.telefono, e.target, "telefono");
-        break;
-    }
-}
-
-
-// -------------- VALIDAMOS NUESTROS INPUTS ------------------------
-const validarCampo = (expresion, input, campo) => {
-    if (expresion.test(input.value)){
-        document.getElementById(`grupo__${campo}`).classList.remove("formulario__grupo-incorrecto");
-        document.getElementById(`grupo__${campo}`).classList.add("formulario__grupo-correcto");
-        document.querySelector(`#grupo__${campo} i`).classList.remove("fa-times-circle");
-        document.querySelector(`#grupo__${campo} i`).classList.add("fa-check-circle");
-        document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove("formulario__input-error-activo");
-        campos[campo] = true;
-        console.log("Funciona");
-    } else {
-           document.getElementById(`grupo__${campo}`).classList.add("formulario__grupo-incorrecto");
-           document.getElementById(`grupo__${campo}`).classList.remove("formulario__grupo-correcto");
-           document.querySelector(`#grupo__${campo} i`).classList.add("fa-times-circle");
-           document.querySelector(`#grupo__${campo} i`).classList.remove("fa-check-circle");
-           document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add("formulario__input-error-activo");
-           campos[campo] = false;
-           console.log("Funciona");
+$(document).ready(function(){
+    $("#formulario").validate({
+		rules: {
+                    rut: {required: true, minlength: 9, maxlength: 10},
+                    nombre: { required: true, minlength: 3, maxlength: 20},
+                    email: { required:true, email: true},
+                    celular: { required: true, minlength: 9, maxlength: 12},
+                    edad: { required: true, min: 18, max: 35},
+                    apellidop: { required: true, minlength: 3, maxlength: 20},
+                    apellidom: { required: true, minlength: 3, maxlength: 20},
+                    profesion: { required: true},
+                    motivacion: { required: true}
         }
-}
-
-
-// --------- VALIDAMOS NUESTRAS PASSWORD'S ---------------
-const validarPassword2 = () => {
-    let inputPassword1 = document.getElementById("password");
-    let inptPassword2 = document.getElementById("password2");
-
-    if (inputPassword1.value !== inptPassword2.value) {
-        document.getElementById(`grupo__password2`).classList.add("formulario__grupo-incorrecto");
-        document.getElementById(`grupo__password2`).classList.remove("formulario__grupo-correcto");
-        document.querySelector(`#grupo__password2 i`).classList.add("fa-times-circle");
-        document.querySelector(`#grupo__password2 i`).classList.remove("fa-check-circle");
-        document.querySelector(`#grupo__password2 .formulario__input-error`).classList.add("formulario__input-error-activo");
-        campos[password] = false;
-        console.log("Funciona");
-    } else {
-        document.getElementById(`grupo__password2`).classList.remove("formulario__grupo-incorrecto");
-        document.getElementById(`grupo__password2`).classList.add("formulario__grupo-correcto");
-        document.querySelector(`#grupo__password2 i`).classList.remove("fa-times-circle");
-        document.querySelector(`#grupo__password2 i`).classList.add("fa-check-circle");
-        document.querySelector(`#grupo__password2 .formulario__input-error`).classList.remove("formulario__input-error-activo");
-        campos[password] = true;
-        console.log("Funciona");
-    }
-}
-
-
-// --------- CAPTURAMOS CADA VEZ QUE EL USUARIO PRESIONA UNA TECLA ---------------
-$inputs.forEach((input) => {
-    input.addEventListener("keyup", validarFormulario);
-    input.addEventListener("blur", validarFormulario);
+    });
 });
-
-
-
-// --------- VALIDAMOS TODO NUESTRO FORMULARIO ---------------
 
 
 function crearCarta(){
@@ -126,24 +44,31 @@ function crearCarta(){
     const mail = document.getElementById('email').value
     const motiv = document.getElementById('motivacion').value
     
-    
-    message =  fecha_hoy 
-     + 'Estimado responsable de recursos humanos ' +  
-    '\nyo ' + nombre + ' ' + apellido +' '+ apellidom + ' ,rut : '+ rut +' , pretendo postular al trabajo, ' +
-    'soy un/a ' + genero.toLowerCase() + ' de ' + edad + ' años, fui ' + profesion + ' quiero trabajar porque ' + motiv + 
-    ' , mi mail de contacto es: ' + mail 
+    const datos = [rut , nombre, apellido, apellidom, profesion, edad, genero, mail,motiv]
 
-    if (genero == 'No binario'){
-        message = fecha_hoy 
-        + 'Estimado responsable de recursos humanos, ' +  
-       'yo ' + nombre + ' ' + apellido +' '+ apellidom + ', rut : '+ rut +' , pretendo postular al trabajo, ' 
-       + ' tengo ' + edad +' años, soy una persona ' + genero.toLowerCase() + ' fui ' + profesion + ' quiero trabajar porque ' + motiv + 
-       ' , mi mail de contacto es: ' + mail 
+    for (var i = 0; i < datos.length; i++){
+        if (datos[i] == ''){
+            message = ''
+            console.log('a')
+        } 
+        else{
+            message =  fecha_hoy 
+        + '\n\nEstimado responsable de recursos humanos ' +  
+        'yo ' + nombre + ' ' + apellido +' '+ apellidom + ' ,rut : '+ rut +' , pretendo postular al trabajo, ' +
+        'soy un/a ' + genero.toLowerCase() + ' de ' + edad + ' años, fui ' + profesion + ' quiero trabajar porque ' + motiv + 
+        ' , mi mail de contacto es: ' + mail 
+
+        if (genero == 'No binario'){
+            message = fecha_hoy 
+            + 'Estimado responsable de recursos humanos, ' +  
+        'yo ' + nombre + ' ' + apellido +' '+ apellidom + ', rut : '+ rut +' , pretendo postular al trabajo, ' 
+        + ' tengo ' + edad +' años, soy una persona ' + genero.toLowerCase() + ' fui ' + profesion + ' quiero trabajar porque ' + motiv + 
+        ' , mi mail de contacto es: ' + mail 
+        }
+        console.log('b')
     }
-    
+    }
     //document.write('Estimado responsable de recursos humanos' +  rut )
     carta.innerText = message
-    
-    
-    
+
 };
